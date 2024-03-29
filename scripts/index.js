@@ -6,9 +6,10 @@ let arr = [];
 async function search () {
     inputWrapper.innerHTML = '';
     arr = [];
-    let t =  await fetch('https://api.github.com/repositories');
-    let repositories = await t.json();
     let value = input.value;
+    let t = await fetch(`https://api.github.com/search/repositories?q=${value}`);
+    let repositories = await t.json();
+    repositories = repositories.items;
     repositories = repositories.filter(repo => repo.name.toLowerCase().startsWith(value));
     repositories.sort(function(a, b) {
         let texta = a.name.toLowerCase();
