@@ -39,7 +39,7 @@ const debounce = (fn, debounceTime) => {
     }
   };
   
-input.addEventListener('input',debounce(search,200));
+input.addEventListener('input',debounce(search,1000));
 
 let inputItem = document.querySelectorAll('.input__item');
 let list = document.querySelector('.list');
@@ -52,7 +52,6 @@ async function addList (element, index) {
     let listBtn = document.createElement('button');
     let t = await fetch(`https://api.github.com/repos/${arr[idCounter].owner.login}/${arr[idCounter].name}/stargazers`)
     let stargazers = await t.json();
-    console.log(stargazers);
     listArticle.innerText = `Name:${arr[idCounter].name} \n Owner:${arr[idCounter].owner.login} \n Stars:${stargazers.length}`;
     listArticle.classList.add('list__article');
     listBtn.classList.add('list__btn');
