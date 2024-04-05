@@ -7,6 +7,7 @@ async function search () {
     inputWrapper.innerHTML = '';
     arr = [];
     let value = input.value;
+    if (!value)  return ;
     let t = await fetch(`https://api.github.com/search/repositories?q=${value}`);
     let repositories = await t.json();
     repositories = repositories.items;
